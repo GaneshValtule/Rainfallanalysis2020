@@ -10,7 +10,7 @@ st.set_page_config(
     page_icon="🌧️",
 )
 
-st.title("🌍 Welcome to the Rainfall Analysis Dashboard")
+st.title("Welcome to the Rainfall Analysis Dashboard for India")
 
 @st.cache_data
 def load_dataset():
