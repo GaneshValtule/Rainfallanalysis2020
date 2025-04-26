@@ -6,7 +6,7 @@ from geopy.geocoders import Nominatim
 from datetime import datetime
 
 st.set_page_config(
-    page_title="Rainfall Analysis App",
+    page_title="Rainfall Analysis 2020",
     page_icon="🌧️",
 )
 
