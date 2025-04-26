@@ -5,3 +5,4 @@ plotly
 geopy
 netCDF4
 scipy
+matplotlib
