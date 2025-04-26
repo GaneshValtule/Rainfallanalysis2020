@@ -1,2 +1,4 @@
 xarray
 plotly
+geopy
+geopandas
