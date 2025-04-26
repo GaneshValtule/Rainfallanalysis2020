@@ -60,7 +60,7 @@ fig.update_layout(
     yaxis_title='Latitude',
     xaxis=dict(scaleanchor='y')
     width=1000,
-    height=400,
+    height=700,
 )
 
 st.plotly_chart(fig, use_container_width=True)
