@@ -1,5 +1,3 @@
-!pip install xarray
-
 import streamlit as st
 import xarray as xr
 import numpy as np
