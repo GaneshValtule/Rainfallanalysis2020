@@ -58,7 +58,7 @@ fig.update_layout(
     ),
     xaxis_title='Longitude',
     yaxis_title='Latitude',
-    xaxis=dict(scaleanchor='y')
+    xaxis=dict(scaleanchor='y'),
     width=1000,
     height=700,
 )
