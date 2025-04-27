@@ -229,7 +229,7 @@ if address:
 
         st.plotly_chart(fig2)
 
-        st.subheader("📈 Monthly Rainfall Statistics for District")
+        st.subheader(f"📈 Monthly Rainfall Statistics for {address} District")
 
         df['Month'] = pd.to_datetime(df['Date']).dt.month_name()
 
