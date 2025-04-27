@@ -229,3 +229,60 @@ if address:
 
         st.plotly_chart(fig2)
 
+        st.subheader("📈 Monthly Rainfall Statistics for District")
+
+        df['Month'] = pd.to_datetime(df['Date']).dt.month_name()
+
+        month_order = pd.CategoricalDtype(
+            ['January', 'February', 'March', 'April', 'May', 'June', 
+            'July', 'August', 'September', 'October', 'November', 'December'],
+            ordered=True
+        )
+
+        monthly_avg_dist = df.groupby('Month')['Rainfall_mm'].mean().reset_index()
+        monthly_avg_dist['Month'] = monthly_avg_dist['Month'].astype(month_order)
+        monthly_avg_dist = monthly_avg_dist.sort_values('Month')
+        monthly_avg_dist.reset_index(drop=True)
+
+        monthly_tot_dist = df.groupby('Month')['Rainfall_mm'].sum().reset_index()
+        monthly_tot_dist['Month'] = monthly_tot_dist['Month'].astype(month_order)
+        monthly_tot_dist = monthly_tot_dist.sort_values('Month')
+        monthly_tot_dist.reset_index(drop=True)
+
+        monthly_max_dist = df.groupby('Month')['Rainfall_mm'].max().reset_index()
+        monthly_max_dist['Month'] = monthly_max_dist['Month'].astype(month_order)
+        monthly_max_dist = monthly_max_dist.sort_values('Month')
+        monthly_max_dist.reset_index(drop=True)
+
+        tab1, tab2, tab3 = st.tabs(["📊 Monthly Average", "📊 Monthly Total", "📊 Monthly Maximum"])
+
+        with tab1:
+            st.dataframe(monthly_avg_dist.style.hide(axis='index'), use_container_width=True)
+            csv = monthly_avg_dist.to_csv(index=False).encode('utf-8')
+            st.download_button(
+                label=f"⬇️ Download Average Rainfall {address} CSV",
+                data=csv,
+                file_name=f'monthly_avg_rainfall_{address}.csv',
+                mime='text/csv',
+            )
+
+        with tab2:
+            st.dataframe(monthly_tot_dist.style.hide(axis='index'), use_container_width=True)
+            csv = monthly_tot_dist.to_csv(index=False).encode('utf-8')
+            st.download_button(
+                label=f"⬇️ Download Total Rainfall {address} CSV",
+                data=csv,
+                file_name=f'monthly_total_rainfall_{address}.csv',
+                mime='text/csv',
+            )
+
+        with tab3:
+            st.dataframe(monthly_max_dist.style.hide(axis='index'), use_container_width=True)
+            csv = monthly_max_dist.to_csv(index=False).encode('utf-8')
+            st.download_button(
+                label=f"⬇️ Download Maximum Rainfall {address} CSV",
+                data=csv,
+                file_name=f'monthly_max_rainfall_{address}.csv',
+                mime='text/csv',
+            )
+
